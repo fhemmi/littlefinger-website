@@ -1,0 +1,6 @@
+import React from 'react';
+import { Menu, Search, ShoppingBag, X } from 'lucide-react';
+export default function Header({navigate, page, cartCount, openCart, mobileMenuOpen, setMobileMenuOpen}) {
+ const links=[['shop','Shop'],['about','About'],['guides','Tips & Guides'],['faq','FAQs'],['contact','Contact']];
+ return <><div className="announcement">Smart tech. Fair prices. Personal service.</div><header className="header"><a className="brand" href="/" onClick={e=>{e.preventDefault();navigate('home')}} aria-label="Littlefinger home"><span className="brand-mark">L</span><span>littlefinger<span className="brand-dot">.</span><small>GADGETS & MORE</small></span></a><nav className={`nav ${mobileMenuOpen?'nav-open':''}`}>{links.map(([key,label])=><a key={key} className={page===key?'active':''} href={key==='home'?'/':`/${key}`} onClick={e=>{e.preventDefault();navigate(key)}}>{label}</a>)}</nav><div className="header-actions"><button className="icon-button search-toggle" aria-label="Go to shop search" onClick={()=>navigate('shop')}><Search size={19}/></button><button className="cart-button" onClick={openCart}><ShoppingBag size={18}/><span>Bag</span><b>{cartCount}</b></button><button className="icon-button menu-toggle" aria-label="Toggle menu" onClick={()=>setMobileMenuOpen(v=>!v)}>{mobileMenuOpen?<X size={20}/>:<Menu size={20}/>}</button></div></header></>;
+}
